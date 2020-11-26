@@ -89,7 +89,6 @@ export default {
     // 刷新画布，并获取验证码
     const refreshCanvas = () => {
       getSmsCode().then(res => {
-        console.log(res);
         state.verification = res.smsCode;
         draw();
       });
