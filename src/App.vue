@@ -1,10 +1,27 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-view class="router-view" v-slot="{ Component }">
+      <transition :name="transitionName">
+        <component :is="Component" />
+      </transition>
+    </router-view>
   </div>
-  <router-view />
 </template>
+
+<script>
+import { reactive, toRefs } from "vue";
+export default {
+  setup() {
+    const state = reactive({
+      transitionName: "slide-left"
+    });
+
+    return {
+      ...toRefs(state)
+    };
+  }
+};
+</script>
 
 <style lang="scss">
 #app {
@@ -13,10 +30,11 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  height: 100%;
 }
 
 #nav {
-  padding: 30px;
+  margin: 10px;
 
   a {
     font-weight: bold;

@@ -1,0 +1,2 @@
+import "mockjs";
+import "./user";
